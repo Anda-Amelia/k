@@ -830,8 +830,8 @@ module BYTES-IN-K
   rule replaceAtBytes(B : BS, N, BS') => B : replaceAtBytes(BS, N -Int 1, BS') requires N >Int 0
   rule replaceAtBytes(_ : BS, 0, B : BS') => B : replaceAtBytes(BS, 0, BS')
 
-  syntax Bytes ::= padRightBytes(Bytes, Int, Int) [function]
-                 | padLeftBytes(Bytes, Int, Int) [function]
+  syntax Bytes ::= padRightBytes(Bytes, Int, Int) [function, klabel(padRightBytes)]
+                 | padLeftBytes(Bytes, Int, Int) [function, klabel(padLeftBytes)]
   rule padRightBytes(BS, LEN, VAL) => reverseBytes(padLeftBytes(reverseBytes(BS), LEN, VAL))
   rule padLeftBytes(BS, LEN, VAL) => BS requires lengthBytes(BS) >=Int LEN
   rule padLeftBytes(BS, LEN, VAL) => padLeftBytes(VAL : BS, LEN, VAL) requires lengthBytes(BS) <Int LEN

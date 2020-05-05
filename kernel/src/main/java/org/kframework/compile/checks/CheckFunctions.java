@@ -72,7 +72,9 @@ public class CheckFunctions {
                       || hook.equals("SET.unit") || hook.equals("LIST.element")
                       || hook.equals("LIST.concat") || hook.equals("LIST.unit")
                       || hook.equals("MAP.element") || hook.equals("MAP.concat")
-                      || hook.equals("MAP.unit"))) {
+                      || hook.equals("MAP.unit")
+                        //Required for #Ceil rules
+                      || k.klabel().name().equals("padRightBytes") || k.klabel().name().equals("padLeftBytes"))) {
                   errors.add(KEMException.compilerError("Illegal function symbol on LHS of rule.", k));
                 }
                 atTop = false;
